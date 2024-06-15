@@ -32,7 +32,8 @@ Windows
 ```bash
 sudo apt install mingw-w64
 ```
-2. compile the project with:
+2. compile the project **from the Rust-Dropper directory** with:
 ```bash
 cargo build --release --target x86_64-pc-windows-gnu
 ```
+3. The path of the new executalbe is: Rust-Dropper/target/x86_64-pc-windows-gnu/release
