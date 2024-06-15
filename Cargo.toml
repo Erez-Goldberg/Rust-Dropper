@@ -1,5 +1,5 @@
 [package]
-name = "shellcode_executor"
+name = "Rust-Dropper"
 version = "0.1.0"
 authors = ["Erez Goldberg"]
 edition = "2021"
