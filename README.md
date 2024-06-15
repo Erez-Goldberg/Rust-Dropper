@@ -17,7 +17,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Erez-Goldberg/rust-dropper.git
-cd rust-dropper
+cd Rust-Dropper
 ```
 
 ## Usage
